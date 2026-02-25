@@ -1,0 +1,386 @@
+/* ============================================================================
+   LLM Prompt Engineering Lab - Custom Styles
+   
+   A professional, modern interface for experimenting with LLM prompting
+   techniques including structured output, grounding, and summarization.
+   
+   Author: GenAI Learning Lab
+   Last Updated: February 2026
+   ============================================================================ */
+
+/* ============================================================================
+   SECTION 1: CSS VARIABLES & CUSTOM PROPERTIES
+   ============================================================================ */
+
+:root {
+    /* Primary Color Palette */
+    --color-primary: #4f46e5;
+    --color-primary-dark: #4338ca;
+    --color-primary-light: #6366f1;
+
+    /* Neutral Colors */
+    --color-gray-50: #f8fafc;
+    --color-gray-100: #f1f5f9;
+    --color-gray-200: #e2e8f0;
+    --color-gray-300: #cbd5e1;
+    --color-gray-500: #64748b;
+    --color-gray-700: #334155;
+    --color-gray-800: #1e293b;
+    --color-gray-900: #0f172a;
+
+    /* Semantic Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+
+    /* Typography */
+    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 200ms ease-in-out;
+}
+
+/* ============================================================================
+   SECTION 2: RESET & BASE STYLES
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-900);
+    line-height: 1.6;
+}
+
+/* ============================================================================
+   SECTION 3: TYPOGRAPHY
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+}
+
+p {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-700);
+}
+
+label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+}
+
+/* ============================================================================
+   SECTION 4: COMPONENTS - BUTTONS
+   ============================================================================ */
+
+button {
+    font-family: var(--font-family-base);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================================================
+   SECTION 5: COMPONENTS - FORM ELEMENTS
+   ============================================================================ */
+
+textarea,
+input[type="text"],
+input[type="checkbox"] {
+    transition: border-color var(--transition-fast), 
+                box-shadow var(--transition-fast);
+}
+
+textarea:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* ============================================================================
+   SECTION 6: COMPONENTS - TAB NAVIGATION
+   ============================================================================ */
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: transparent;
+    color: var(--color-gray-700);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--color-primary);
+}
+
+.tab-button.active {
+    border-bottom-width: 2px;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================================================
+   SECTION 7: COMPONENTS - LOADING SPINNER
+   ============================================================================ */
+
+.loading-spinner {
+    border: 4px solid var(--color-gray-200);
+    border-top: 4px solid var(--color-primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin var(--transition-base) linear infinite;
+}
+
+.loading-spinner.hidden {
+    display: none;
+}
+
+/* ============================================================================
+   SECTION 8: COMPONENTS - CODE BLOCKS
+   ============================================================================ */
+
+.code-block {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-200);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    overflow-x: auto;
+    line-height: 1.5;
+    border: 1px solid var(--color-gray-700);
+}
+
+.code-block::-webkit-scrollbar {
+    height: 6px;
+}
+
+.code-block::-webkit-scrollbar-track {
+    background-color: var(--color-gray-700);
+    border-radius: var(--radius-md);
+}
+
+.code-block::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-600);
+    border-radius: var(--radius-md);
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gray-500);
+}
+
+/* ============================================================================
+   SECTION 9: COMPONENTS - SUMMARY FEATURE
+   ============================================================================ */
+
+#summary-section {
+    animation: fadeIn var(--transition-base);
+}
+
+#summarize-button {
+    background-color: var(--color-info);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-fast);
+}
+
+#summarize-button:hover:not(:disabled) {
+    background-color: #2563eb;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+#summarize-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+#summarize-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#summary-container {
+    background-color: #eff6ff;
+    border: 1px solid #93c5fd;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    animation: slideIn var(--transition-base);
+}
+
+#summary-container p {
+    color: #1e40af;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    margin-bottom: 0.75rem;
+}
+
+#summary-text {
+    font-size: var(--font-size-sm);
+    color: #1e3a8a;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+#close-summary {
+    background-color: transparent;
+    border: none;
+    color: #1e40af;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0.25rem 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+#close-summary:hover {
+    color: #1e3a8a;
+}
+
+/* ============================================================================
+   SECTION 10: ANIMATIONS
+   ============================================================================ */
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============================================================================
+   SECTION 11: UTILITY CLASSES
+   ============================================================================ */
+
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+/* ============================================================================
+   SECTION 12: RESPONSIVE DESIGN & MEDIA QUERIES
+   ============================================================================ */
+
+@media (max-width: 640px) {
+    body {
+        font-size: var(--font-size-sm);
+    }
+
+    .code-block {
+        font-size: 0.65rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================================================
+   END OF STYLES
+   ============================================================================ */
+    
